@@ -43,25 +43,25 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col px-8 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen flex flex-col px-4 sm:px-6 lg:px-8 pt-24 pb-8 sm:pt-0 sm:pb-0">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url(/images/heroimageblurred.webp)' }}
       />
       <div className="absolute inset-0 bg-black/10" />
 
-      <div className="relative z-10 w-full flex-1 flex items-center justify-center">
+      <div className="relative z-10 w-full flex-1 flex items-center justify-center py-8">
         <div className="text-center max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight drop-shadow-lg">
             Expert care for your body, mind, and wellbeing.
           </h1>
 
-          <p className="text-xl sm:text-2xl text-white mb-12 leading-relaxed max-w-3xl mx-auto drop-shadow-md">
+          <p className="text-lg sm:text-2xl text-white mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto drop-shadow-md">
             We believe true health comes from balancing physical and emotional wellbeing.
             Our clinic is a safe, inclusive space where everyone is welcome.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center">
             <button
               onClick={() => scrollToSection('treatments')}
               className="group relative px-8 py-3 sm:px-10 sm:py-5 backdrop-blur-md bg-white/10 text-white border-2 border-white rounded-xl hover:bg-white hover:text-[#313C38] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-base sm:text-lg font-semibold w-full sm:w-auto overflow-hidden"
