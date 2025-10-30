@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Car, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Car, MessageCircle, Navigation } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -66,7 +66,7 @@ export default function Contact() {
           <div className="space-y-6">
             <div className="h-[450px] rounded-xl overflow-hidden shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2463.9846543!2d-0.8235!3d51.8311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDQ5JzUyLjAiTiAwwrA0OSczMi41Ilc!5e0!3m2!1sen!2suk!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2464.0!2d-0.7816111!3d51.8332222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTHCsDQ5JzU5LjUiTiAwwrA0Nic1My43Ilc!5e0!3m2!1sen!2suk!4v1234567890"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -76,6 +76,15 @@ export default function Contact() {
                 title="Aylesbury Health and Wellness Location"
               ></iframe>
             </div>
+            <a
+              href="https://www.google.com/maps/place/51%C2%B049'59.6%22N+0%C2%B046'53.8%22W/@51.8332222,-0.7816111,950m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d51.8332222!4d-0.7816111?entry=ttu&g_ep=EgoyMDI1MTAyNy4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full px-6 py-3 bg-[#83896D] text-white rounded-lg hover:bg-[#6B7A5B] transition-all transform hover:scale-105 hover:shadow-lg font-medium flex items-center justify-center gap-2"
+            >
+              <Navigation size={20} />
+              Get Directions
+            </a>
             <div className="space-y-4">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-[#83896D] text-white rounded-full flex items-center justify-center">
