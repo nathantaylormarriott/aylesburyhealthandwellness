@@ -1,4 +1,4 @@
-import { Heart, Users, Award } from 'lucide-react';
+import { Heart, Users, Award, Clock } from 'lucide-react';
 
 export default function About() {
   return (
@@ -23,7 +23,7 @@ export default function About() {
               </div>
               <div className="w-full md:w-96 flex-shrink-0 rounded-xl overflow-hidden shadow-xl">
                 <img
-                  src="/images/about us.webp"
+                  src="/images/WhatsApp Image 2025-10-30 at 16.33.09.jpeg"
                   alt="Aylesbury Health and Wellness Interior"
                   className="w-full h-full object-cover"
                 />
@@ -32,7 +32,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="flex justify-center items-center gap-8 md:grid md:grid-cols-3 md:gap-12 mt-8 md:mt-16 max-w-6xl mx-auto">
+        <div className="flex justify-center items-center gap-8 md:grid md:grid-cols-4 md:gap-8 mt-8 md:mt-16 max-w-7xl mx-auto">
           <div className="text-center group md:block">
             <div className="inline-flex items-center justify-center w-12 h-12 md:w-20 md:h-20 bg-gradient-to-br from-[#83896D] to-[#6B7A5B] text-white rounded-full mb-2 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
               <Heart size={20} strokeWidth={2} className="md:w-9 md:h-9" />
@@ -67,6 +67,20 @@ export default function About() {
             <p className="hidden md:block text-[#83896D] text-lg leading-relaxed">
               Registered practitioners with NHS and private sector experience
             </p>
+          </div>
+
+          <div className="text-center group md:block">
+            <div className="inline-flex items-center justify-center w-12 h-12 md:w-20 md:h-20 bg-gradient-to-br from-[#83896D] to-[#6B7A5B] text-white rounded-full mb-2 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <Clock size={20} strokeWidth={2} className="md:w-9 md:h-9" />
+            </div>
+            <h3 className="text-sm md:text-2xl font-bold text-[#313C38] md:mb-4">
+              Opening Times
+            </h3>
+            <div className="hidden md:block text-[#83896D] text-base leading-relaxed space-y-1">
+              <p>Mon - Thurs: 09:00 - 19:00</p>
+              <p>Fri & Sat: 09:00 - 20:00</p>
+              <p>Sun: 10:00 - 17:00</p>
+            </div>
           </div>
         </div>
       </div>

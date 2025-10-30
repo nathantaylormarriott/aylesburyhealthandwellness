@@ -30,7 +30,7 @@ const treatments = [
   },
   {
     title: 'Digestive Health',
-    description: 'Targeted therapies to support gut function, reduce discomfort, and help identify food sensitivities.',
+    description: 'Targeted therapies to support gut function, reduce discomfort associated with Constipation and excessive gas, help to identify food sensitivities.',
     priceFrom: 'From £40',
     icon: <Heart size={28} />,
     treatments: [

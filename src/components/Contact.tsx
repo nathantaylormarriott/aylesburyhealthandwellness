@@ -120,9 +120,14 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-[#313C38] mb-1">Phone</h3>
-                  <a href="tel:07379987766" className="text-[#313C38] hover:text-[#83896D] transition">
-                    07379 987766
-                  </a>
+                  <div className="space-y-1">
+                    <a href="tel:07379987766" className="block text-[#313C38] hover:text-[#83896D] transition">
+                      07379 987766
+                    </a>
+                    <a href="tel:01296926045" className="block text-[#313C38] hover:text-[#83896D] transition">
+                      01296 926045
+                    </a>
+                  </div>
                 </div>
               </div>
 

@@ -25,6 +25,10 @@ export default function Footer() {
                 <Phone size={18} />
                 <span>07379 987766</span>
               </a>
+              <a href="tel:01296926045" className="flex items-center gap-2 text-[#FFFAF1] hover:text-[#83896D] transition">
+                <Phone size={18} />
+                <span>01296 926045</span>
+              </a>
               <a href="mailto:info@aylesburyhealthandwellness.co.uk" className="flex items-center gap-2 text-[#FFFAF1] hover:text-[#83896D] transition">
                 <Mail size={18} />
                 <span>info@aylesburyhealthandwellness.co.uk</span>
