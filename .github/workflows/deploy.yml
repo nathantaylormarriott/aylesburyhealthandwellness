@@ -1,22 +1,10 @@
-name: Deploy to cPanel via SSH
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Deploy to cPanel via SSH
-        uses: easingthemes/ssh-deploy@v4.1.8
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.CPANEL_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.CPANEL_HOST }}
-          REMOTE_USER: ${{ secrets.CPANEL_USER }}
-          TARGET: ${{ secrets.CPANEL_PATH }}
+- name: Deploy to cPanel via SSH
+  uses: easingthemes/ssh-deploy@v4.1.8
+  with:
+    SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+    REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+    REMOTE_USER: ${{ secrets.REMOTE_USER }}
+    REMOTE_PORT: 7822             # ✅ FIXED
+    TARGET: public_html           # change if needed
+    ARGS: -rlgoDzvc -i
+    SSH_CMD_ARGS: -o StrictHostKeyChecking=no
