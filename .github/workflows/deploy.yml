@@ -34,7 +34,7 @@ jobs:
       - name: Deploy to Krystal via rsync
         uses: easingthemes/ssh-deploy@v4.1.8
         with:
-          REMOTE_PORT: 7822                         # ✅ Krystal SSH port
+          REMOTE_PORT: 722                         # ✅ Krystal SSH port
           ARGS: -rlgoDzvc -i --delete               # -i=items; --delete to remove files not in repo (optional)
           SSH_CMD_ARGS: -o StrictHostKeyChecking=no
           SOURCE: ./                                # what to upload (repo root)
