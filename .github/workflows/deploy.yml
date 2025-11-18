@@ -21,16 +21,16 @@ jobs:
           repository: ${{ secrets.REPO_NAME }}
           fetch-depth: 1
 
-      # --- OPTIONAL BUILD STEP (uncomment if you build assets) ---
-      # - name: Install Node
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 20
-      #
-      # - name: Build
-      #   run: |
-      #     npm ci
-      #     npm run build
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build Vite app
+        run: npm run build
 
       - name: Deploy to Krystal via rsync
         uses: easingthemes/ssh-deploy@v4.1.8
@@ -39,6 +39,6 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}           # ✅ e.g. yourdomain.com or server hostname
           REMOTE_USER: ${{ secrets.REMOTE_USER }}           # ✅ your cPanel username
           REMOTE_PORT: 722                                  # ✅ Krystal SSH port
-          SOURCE: ./                                       # what to upload (repo root)
+          SOURCE: ./dist                                       # what to upload
           TARGET: ${{ secrets.REMOTE_TARGET }}             # ✅ e.g. public_html or public_html/app
           ARGS: -rlgoDzvc -i --delete                      # -i=items; --delete removes old files not in repo
