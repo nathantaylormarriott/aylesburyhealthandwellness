@@ -39,6 +39,6 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}           # ✅ e.g. yourdomain.com or server hostname
           REMOTE_USER: ${{ secrets.REMOTE_USER }}           # ✅ your cPanel username
           REMOTE_PORT: 722                                  # ✅ Krystal SSH port
-          SOURCE: ./dist                                       # what to upload
+          SOURCE: ./dist/                                       # what to upload
           TARGET: ${{ secrets.REMOTE_TARGET }}             # ✅ e.g. public_html or public_html/app
           ARGS: -rlgoDzvc -i --delete                      # -i=items; --delete removes old files not in repo
