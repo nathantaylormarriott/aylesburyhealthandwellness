@@ -76,12 +76,13 @@ export default function Hero() {
             >
               <span className="relative z-10">Get In Touch</span>
             </a>
-            <button
-              onClick={() => scrollToSection('contact')}
+            <a
+              href="https://www.fresha.com/book-now/aylesbury-health-and-wellness-limited-y3lpx75w/services?lid=2792378&share=true&pId=2700687"
               className="group relative px-8 py-3 sm:px-10 sm:py-5 bg-[#D97706] text-white border-2 border-[#D97706] rounded-xl hover:bg-[#B45309] hover:border-[#B45309] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-base sm:text-lg font-semibold w-full sm:w-auto overflow-hidden"
+              aria-label="Book Now"
             >
               <span className="relative z-10">Book Now</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
