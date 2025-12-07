@@ -48,12 +48,15 @@ export default function Navbar() {
             >
               Get In Touch
             </a>
-            <button
-              onClick={() => scrollToSection('contact')}
+            <a
+              href="https://www.fresha.com/a/aylesbury-health-and-wellness-limited-bierton-185b-aylesbury-road-xvqsvtg6/booking?menu=true&pId=2700687&dppub=true&cartId=47f1cc15-3447-4deb-97b9-452c49a21ea6"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-2.5 bg-[#D97706] text-white rounded-lg hover:bg-[#B45309] transition-all transform hover:scale-105 hover:shadow-lg font-medium"
+              aria-label="Book Now - open booking in new tab"
             >
               Book Now
-            </button>
+            </a>
           </div>
 
           <button
@@ -89,12 +92,15 @@ export default function Navbar() {
               Get In Touch
             </a>
             <div className="relative">
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="block w-full px-6 py-2.5 bg-[#D97706] text-white rounded-lg hover:bg-[#B45309] transition font-medium relative z-10"
+              <a
+                href="https://www.fresha.com/a/aylesbury-health-and-wellness-limited-bierton-185b-aylesbury-road-xvqsvtg6/booking?menu=true&pId=2700687&dppub=true&cartId=47f1cc15-3447-4deb-97b9-452c49a21ea6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full px-6 py-2.5 bg-[#D97706] text-white rounded-lg hover:bg-[#B45309] transition font-medium relative z-10 text-center"
+                aria-label="Book Now - open booking in new tab"
               >
                 Book Now
-              </button>
+              </a>
               <svg className="absolute -inset-1 w-[calc(100%+8px)] h-[calc(100%+8px)] pointer-events-none">
                 <rect
                   x="2"
