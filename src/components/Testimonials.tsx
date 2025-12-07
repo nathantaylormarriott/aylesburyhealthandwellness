@@ -8,29 +8,29 @@ const testimonials = [
     title: "Consultant Orthopaedic Surgeon"
   },
   {
-    text: "I have worked with the staff of Bucks and wellness for many years and I thoroughly recommended them.",
+    text: "I have worked with the staff of Aylesbury and Bucks Health & Wellness for many years and I thoroughly recommended them.",
     author: "Mr M El Guindi",
     title: "Consultant Orthopaedic Surgeon"
   },
   {
     text: "I have had the pleasure of knowing and working alongside Beth and Anita for several years. Both of them are incredibly trustworthy, professional and lovely people. I fully endorse them. Your feet are in good hands!",
     author: "Mr Ahmad Malik FRCS (Tr & Orth) Dip Med Sport",
-    title: "Consultant Trauma & Orthopaedic Surgeon, The London Foot and Ankle Clinic"
+    title: ""
   },
   {
-    text: "I suffered with sciatica and it got to the point where painkillers stopped working, I received 2 treatments and I was dancing the next day. I've been pain free ever since.",
-    author: "Mr M Kuzas",
-    title: "Patient"
-  },
-  {
-    text: "I suffered with Gout, the pain was terrible and was effecting my daily life and I kept taking time off work. I was recommended the treatment and since then my feet and legs are good as new. Very friendly, professional and knowledgeable, highly recommend. Thank you for helping me and giving me my life back.",
+    text: "I suffered with Gout, the pain was terrible and was effecting my daily life and I kept taking time off work. I was recommended the treatment and since then my feet and legs are good as new. Very friendly, professional and knowledgeable, highly recommended. Thank you for helping me and giving me my life back.",
     author: "Mr D Ayres",
-    title: "Patient"
+    title: ""
   },
   {
-    text: "I have known Anita for a good few years, I recommend them for the management of any foot conditions my patients may have. They are a highly professional and trustworthy team.",
+    text: "I have known Anita and Beth for a good few years, I recommend them for the management of any foot conditions my patients may have. They are a highly professional and trustworthy team.",
     author: "Mr Shibu Krishnan",
     title: "MBBS, MS, MRCS (T&O) Dip, Sports Consultant Orthopaedic Surgeon (Hip and Knee)"
+  },
+  {
+    text: "I would highly recommend Anita and Beth for professional foot health services.\nThey are professional and able to manage a wide range of foot care. They are diligent and skilled, I have always had positive feedback from patients I have referred to them for ongoing care",
+    author: "Ms Sally Feeney",
+    title: "Consultant Podiatric Surgeon"
   }
 ];
 
@@ -70,9 +70,11 @@ export default function Testimonials() {
                 <p className="font-bold text-[#313C38] text-lg">
                   {testimonials[currentIndex].author}
                 </p>
-                <p className="text-[#83896D]">
-                  {testimonials[currentIndex].title}
-                </p>
+                {testimonials[currentIndex].title && (
+                  <p className="text-[#83896D]">
+                    {testimonials[currentIndex].title}
+                  </p>
+                )}
               </div>
             </div>
           </div>
