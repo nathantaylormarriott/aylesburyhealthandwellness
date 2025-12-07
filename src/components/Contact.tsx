@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Car, MessageCircle, Navigation } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Car, MessageCircle, Navigation, Clock } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -10,6 +10,16 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const openingHours = [
+    { day: 'Monday', hours: '9:00am - 6:00pm' },
+    { day: 'Tuesday', hours: '9:00am - 6:00pm' },
+    { day: 'Wednesday', hours: '9:00am - 6:00pm' },
+    { day: 'Thursday', hours: '9:00am - 6:00pm' },
+    { day: 'Friday', hours: '9:00am - 6:00pm' },
+    { day: 'Saturday', hours: '9:00am - 3:00pm' },
+    { day: 'Sunday', hours: 'Closed' },
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -164,6 +174,31 @@ export default function Contact() {
                   <p className="text-[#313C38]">
                     The Old Chapel, Bierton<br />
                     Aylesbury
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-4 bg-[#FFFAF1] rounded-lg border border-[#E5E7EB] shadow-sm">
+                <div className="flex-shrink-0 w-12 h-12 bg-[#D97706] text-white rounded-full flex items-center justify-center">
+                  <Clock size={20} />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
+                    <h3 className="font-semibold text-[#313C38]">Clinic Hours</h3>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-[#D97706] bg-[#FFF3E0] px-3 py-1 rounded-full">
+                      Same-day appointments available
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {openingHours.map((item) => (
+                      <div key={item.day} className="flex justify-between text-sm text-[#313C38] bg-white rounded-md px-3 py-2 shadow-inner">
+                        <span className="font-medium">{item.day}</span>
+                        <span className="text-[#4B5563]">{item.hours}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-sm text-[#4B5563] mt-3">
+                    Need an urgent visit? Call ahead and we&apos;ll do our best to fit you in.
                   </p>
                 </div>
               </div>
