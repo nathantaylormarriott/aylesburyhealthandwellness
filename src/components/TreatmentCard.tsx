@@ -15,13 +15,6 @@ export default function TreatmentCard({
   icon,
   emphasis
 }: TreatmentCardProps) {
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const hasEmphasis = !!emphasis;
 
   return (
@@ -61,12 +54,12 @@ export default function TreatmentCard({
           <span className="text-[#1b4660] font-bold text-lg whitespace-nowrap sm:hidden">
             {priceFrom}
           </span>
-          <button
-            onClick={scrollToContact}
+          <a
+            href="https://www.fresha.com/book-now/aylesbury-health-and-wellness-limited-y3lpx75w/services?lid=2792378&share=true&pId=2700687"
             className="px-4 py-2 bg-[#D97706] text-white text-sm rounded-lg hover:bg-[#B45309] transition-all transform hover:scale-105 hover:shadow-lg font-medium"
           >
             View All Treatments
-          </button>
+          </a>
         </div>
       </div>
     </div>
