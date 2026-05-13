@@ -6,8 +6,8 @@ const clinicGallery = [
     alt: 'Courtyard at Aylesbury Health and Wellness with warm lighting at dusk',
   },
   {
-    src: '/images/clinic/gallery-treatment-suite.png',
-    alt: 'Calm treatment room with massage table and soft lighting',
+    src: '/images/clinic/gallery-oak-room.png',
+    alt: 'The Oak Room — professional treatment space with certificates and clinical equipment',
   },
   {
     src: '/images/clinic/gallery-dual-treatment.png',
