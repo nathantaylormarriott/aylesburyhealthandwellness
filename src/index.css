@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased;
+  }
+
+  * {
+    @apply scroll-smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  @keyframes draw-border {
+    0% {
+      stroke-dashoffset: 400;
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 0.5;
+    }
+  }
+
+  .animate-draw-border {
+    animation: draw-border 6s ease-in-out infinite;
+    filter: blur(1.5px) drop-shadow(0 0 6px rgba(234, 88, 12, 1)) drop-shadow(0 0 12px rgba(234, 88, 12, 0.8)) drop-shadow(0 0 20px rgba(234, 88, 12, 0.6)) drop-shadow(0 0 30px rgba(234, 88, 12, 0.4));
+  }
+
+  @keyframes hero-draw-border {
+    0% {
+      stroke-dashoffset: 600;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .animate-hero-border {
+    animation: hero-draw-border 6s linear infinite;
+    filter: drop-shadow(0 0 6px rgba(234, 88, 12, 0.6)) drop-shadow(0 0 12px rgba(234, 88, 12, 0.4)) drop-shadow(0 0 18px rgba(234, 88, 12, 0.2));
+  }
+}
