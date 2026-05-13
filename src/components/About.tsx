@@ -1,5 +1,28 @@
 import { Heart, Users, Award, Clock } from 'lucide-react';
 
+const clinicGallery = [
+  {
+    src: '/images/clinic/gallery-courtyard-dusk.png',
+    alt: 'Courtyard at Aylesbury Health and Wellness with warm lighting at dusk',
+  },
+  {
+    src: '/images/clinic/gallery-treatment-suite.png',
+    alt: 'Calm treatment room with massage table and soft lighting',
+  },
+  {
+    src: '/images/clinic/gallery-dual-treatment.png',
+    alt: 'Spa treatment space with two massage tables',
+  },
+  {
+    src: '/images/clinic/gallery-exterior.png',
+    alt: 'Aylesbury Health and Wellness exterior signage at the clinic',
+  },
+  {
+    src: '/images/clinic/gallery-wellness-room.png',
+    alt: 'Wellness treatment room with professional equipment',
+  },
+] as const;
+
 export default function About() {
   return (
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FFFAF1]">
@@ -21,14 +44,35 @@ export default function About() {
                   expertise and compassion, all within the beautiful grounds of the Old Chapel in Bierton.
                 </p>
               </div>
-              <div className="w-full md:w-96 flex-shrink-0 rounded-xl overflow-hidden shadow-xl">
+              <div className="w-full md:w-96 flex-shrink-0 rounded-xl overflow-hidden shadow-xl min-h-[280px] md:min-h-0">
                 <img
-                  src="/images/WhatsApp Image 2025-10-30 at 16.33.09.jpeg"
-                  alt="Aylesbury Health and Wellness Interior"
-                  className="w-full h-full object-cover"
+                  src="/images/clinic/about-feature.png"
+                  alt="Calm treatment room with massage table, soft lighting, and professional furnishings at Aylesbury Health and Wellness"
+                  className="w-full h-full min-h-[280px] md:min-h-[320px] object-cover"
                 />
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto mt-16 md:mt-20">
+          <h3 className="text-2xl md:text-3xl font-bold text-[#313C38] text-center mb-8">
+            Our clinic
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+            {clinicGallery.map(({ src, alt }) => (
+              <div
+                key={src}
+                className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg group"
+              >
+                <img
+                  src={src}
+                  alt={alt}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
         </div>
 

@@ -1,5 +1,6 @@
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import ShimmerBookNowLink from './ShimmerBookNowLink';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,13 +49,10 @@ export default function Navbar() {
             >
               Get In Touch
             </a>
-            <a
-              href="https://www.fresha.com/book-now/aylesbury-health-and-wellness-limited-y3lpx75w/services?lid=2792378&share=true&pId=2700687"
+            <ShimmerBookNowLink
               className="px-6 py-2.5 bg-[#D97706] text-white rounded-lg hover:bg-[#B45309] transition-all transform hover:scale-105 hover:shadow-lg font-medium"
               aria-label="Book Now"
-            >
-              Book Now
-            </a>
+            />
           </div>
 
           <button
@@ -89,30 +87,10 @@ export default function Navbar() {
             >
               Get In Touch
             </a>
-            <div className="relative">
-              <a
-                href="https://www.fresha.com/book-now/aylesbury-health-and-wellness-limited-y3lpx75w/services?lid=2792378&share=true&pId=2700687"
-                className="block w-full px-6 py-2.5 bg-[#D97706] text-white rounded-lg hover:bg-[#B45309] transition font-medium relative z-10 text-center"
-                aria-label="Book Now"
-              >
-                Book Now
-              </a>
-              <svg className="absolute -inset-1 w-[calc(100%+8px)] h-[calc(100%+8px)] pointer-events-none">
-                <rect
-                  x="2"
-                  y="2"
-                  width="calc(100% - 4px)"
-                  height="calc(100% - 4px)"
-                  rx="10"
-                  fill="none"
-                  stroke="#C2410C"
-                  strokeWidth="3"
-                  strokeDasharray="400"
-                  strokeDashoffset="400"
-                  className="animate-draw-border"
-                />
-              </svg>
-            </div>
+            <ShimmerBookNowLink
+              className="block w-full px-6 py-2.5 bg-[#D97706] text-white rounded-lg hover:bg-[#B45309] transition font-medium text-center"
+              aria-label="Book Now"
+            />
           </div>
         </div>
       )}

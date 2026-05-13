@@ -80,14 +80,15 @@ export default function Footer() {
             © {currentYear} Aylesbury Health and Wellness. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-2">
-            <span className="text-[#FFFAF1] text-sm">Marketing by</span>
-            <img
-              src="/images/logos/AURORA MEDIA footer.svg"
-              alt="AURORA Media"
-              className="h-5 w-auto brightness-0 invert"
-            />
-          </div>
+          <a
+            href="https://www.taylor-marriott.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2"
+          >
+            <span className="text-base text-white">Website design by:</span>
+            <img src="/logo-web.svg" alt="Taylor Marriott" className="h-14" />
+          </a>
         </div>
       </div>
     </footer>

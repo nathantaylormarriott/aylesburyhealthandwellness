@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import ShimmerBookNowLink from './ShimmerBookNowLink';
 
 const accreditations = [
   { name: 'BACP', src: '/images/accreditations/BACP_accreditation carousel copy.png', height: 'h-16 md:h-24', margin: '-mb-1' },
@@ -76,13 +77,10 @@ export default function Hero() {
             >
               <span className="relative z-10">Get In Touch</span>
             </a>
-            <a
-              href="https://www.fresha.com/book-now/aylesbury-health-and-wellness-limited-y3lpx75w/services?lid=2792378&share=true&pId=2700687"
-              className="group relative px-8 py-3 sm:px-10 sm:py-5 bg-[#D97706] text-white border-2 border-[#D97706] rounded-xl hover:bg-[#B45309] hover:border-[#B45309] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-base sm:text-lg font-semibold w-full sm:w-auto overflow-hidden"
+            <ShimmerBookNowLink
+              className="group relative px-8 py-3 sm:px-10 sm:py-5 bg-[#D97706] text-white border-2 border-[#D97706] rounded-xl hover:bg-[#B45309] hover:border-[#B45309] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-base sm:text-lg font-semibold w-full sm:w-auto"
               aria-label="Book Now"
-            >
-              <span className="relative z-10">Book Now</span>
-            </a>
+            />
           </div>
         </div>
       </div>
