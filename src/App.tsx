@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NewsletterOfferPopup from './components/NewsletterOfferPopup';
 import ScrollToTop from './components/ScrollToTop';
 import FaqPage from './pages/FaqPage';
 import HomePage from './pages/HomePage';
@@ -7,6 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <NewsletterOfferPopup />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/faq" element={<FaqPage />} />

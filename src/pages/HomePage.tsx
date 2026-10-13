@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import About from '../components/About';
+import EaseStatement from '../components/EaseStatement';
 import Contact from '../components/Contact';
 import Hero from '../components/Hero';
 import Testimonials from '../components/Testimonials';
@@ -23,6 +24,7 @@ export default function HomePage() {
     <SiteLayout>
       <Hero />
       <About />
+      <EaseStatement />
       <Treatments />
       <Testimonials />
       <Contact />

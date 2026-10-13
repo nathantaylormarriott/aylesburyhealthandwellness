@@ -3,9 +3,12 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 type RevealProps = {
   children: ReactNode;
   className?: string;
+  /** Stagger entrance after the element enters view (ms). */
+  delayMs?: number;
+  zIndex?: number;
 };
 
-export default function Reveal({ children, className = '' }: RevealProps) {
+export default function Reveal({ children, className = '', delayMs = 0, zIndex }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
 
@@ -33,8 +36,16 @@ export default function Reveal({ children, className = '' }: RevealProps) {
 
   const stateClass = shown ? 'reveal reveal-in' : 'reveal';
 
+  const delayStyle: { transitionDelay?: string; zIndex?: number } = {};
+  if (shown && delayMs > 0) delayStyle.transitionDelay = `${delayMs}ms`;
+  if (zIndex != null) delayStyle.zIndex = zIndex;
+
   return (
-    <div ref={ref} className={className ? `${stateClass} ${className}` : stateClass}>
+    <div
+      ref={ref}
+      className={className ? `${stateClass} ${className}` : stateClass}
+      style={Object.keys(delayStyle).length ? delayStyle : undefined}
+    >
       {children}
     </div>
   );

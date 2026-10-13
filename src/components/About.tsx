@@ -1,12 +1,15 @@
+import { useEffect, useRef } from 'react';
 import { Heart, Users, Award, Clock, MapPin } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import type Lenis from 'lenis';
 import site from '../../seo/site.json';
+import { getLenisInstance } from '../lib/lenisScroll';
 import Container from './Container';
 import Reveal from './Reveal';
 
-const tileLandscape = 'lg:col-span-2 lg:row-span-2 min-h-[200px] lg:min-h-0';
-const tilePortrait = 'lg:col-span-2 lg:row-span-3 min-h-[280px] lg:min-h-0';
-const tileFact = 'lg:col-span-2 lg:row-span-2 min-h-0';
+const tileLandscape = 'lg:col-span-2 lg:row-span-2 lg:min-h-0';
+const tilePortrait = 'lg:col-span-2 lg:row-span-3 lg:min-h-0';
+const tileFact = 'h-full lg:col-span-2 lg:row-span-2 min-h-0';
 
 const photos = {
   feature: {
@@ -125,7 +128,8 @@ function Photo({
       <img
         src={src}
         alt={alt}
-        className="absolute inset-0 h-full w-full object-cover"
+        data-about-parallax
+        className="about-parallax-photo"
         loading={eager ? 'eager' : 'lazy'}
       />
     </div>
@@ -135,19 +139,55 @@ function Photo({
 function ValueCard({ title, body, icon: Icon, tone }: Omit<(typeof values)[number], 'span'>) {
   const styles = valueToneStyles[tone];
   return (
-    <article className={`flex h-full flex-col justify-between rounded-3xl p-6 md:p-7 ${styles.card}`}>
-      <Icon className={`h-14 w-14 shrink-0 md:h-16 md:w-16 ${styles.icon}`} strokeWidth={1.35} aria-hidden />
-      <div className="mt-5">
-        <h3 className="text-xl font-semibold leading-snug md:text-2xl">{title}</h3>
-        <p className={`mt-2 text-base leading-relaxed md:text-lg ${styles.body}`}>{body}</p>
+    <article className={`flex h-full flex-col justify-between rounded-3xl p-4 sm:p-6 md:p-7 ${styles.card}`}>
+      <Icon className={`h-8 w-8 shrink-0 sm:h-14 sm:w-14 md:h-16 md:w-16 ${styles.icon}`} strokeWidth={1.35} aria-hidden />
+      <div className="mt-4 sm:mt-5">
+        <h3 className="text-base font-semibold leading-snug sm:text-xl md:text-2xl">{title}</h3>
+        <p className={`mt-1.5 text-sm leading-snug sm:mt-2 sm:text-base sm:leading-relaxed md:text-lg ${styles.body}`}>{body}</p>
       </div>
     </article>
   );
 }
 
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const photos = [...section.querySelectorAll<HTMLImageElement>('[data-about-parallax]')];
+
+    const update = () => {
+      const viewH = window.innerHeight;
+      for (const photo of photos) {
+        const frame = photo.parentElement;
+        if (!frame) continue;
+        const rect = frame.getBoundingClientRect();
+        if (rect.bottom < -40 || rect.top > viewH + 40) continue;
+        const travel = rect.height * 0.045;
+        const progress = (rect.top + rect.height / 2 - viewH / 2) / (viewH * 0.9);
+        const shift = Math.max(-1, Math.min(1, progress)) * travel;
+        photo.style.transform = `translate3d(0, ${shift.toFixed(2)}px, 0)`;
+      }
+    };
+
+    const onLenisScroll = (_lenis: Lenis) => update();
+    const lenis = getLenisInstance();
+    if (lenis) {
+      lenis.on('scroll', onLenisScroll);
+      update();
+      return () => lenis.off('scroll', onLenisScroll);
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+    return () => window.removeEventListener('scroll', update);
+  }, []);
+
   return (
-    <section id="about" className="bg-[#FFFAF1] pt-[120px] pb-[120px]">
+    <section id="about" ref={sectionRef} className="bg-[#FFFAF1] pt-[120px] pb-0">
       <Container>
         <Reveal className="mx-auto mb-20 max-w-3xl text-center">
           <header>
@@ -160,9 +200,9 @@ export default function About() {
           </header>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-6 lg:auto-rows-[168px]">
+        <div className="about-bento grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-6 lg:auto-rows-[168px] [&>*]:min-h-0 [&>*]:h-full">
           <Reveal
-            className={`${tilePortrait} sm:col-span-2 relative aspect-[4/5] w-full min-h-[280px] lg:aspect-auto lg:min-h-0 lg:h-full`}
+            className={`${tilePortrait} about-founder col-span-2 relative aspect-[5/6] w-full sm:aspect-[4/5] lg:aspect-auto lg:h-full`}
           >
           <article
             className="relative h-full w-full overflow-hidden rounded-3xl border border-[#83896D]/15"
@@ -172,10 +212,11 @@ export default function About() {
               alt="Anita Stollery, Founder of Aylesbury Health and Wellness"
               width={1075}
               height={1344}
-              className="absolute inset-0 h-full w-full object-cover object-[center_18%]"
+              data-about-parallax
+              className="about-parallax-photo object-[center_18%]"
               loading="eager"
             />
-            <div className="absolute inset-x-0 bottom-0 px-4 pb-4 pt-20 md:px-5 md:pb-5">
+            <div className="absolute inset-x-0 bottom-0 px-3 pb-3 pt-14 sm:px-4 sm:pb-4 sm:pt-20 md:px-5 md:pb-5">
               <div
                 className="pointer-events-none absolute inset-0"
                 aria-hidden
@@ -189,9 +230,12 @@ export default function About() {
                 }}
               />
               <div className="relative">
-                <h3 className="text-2xl font-semibold leading-none text-[#FFFAF1] md:text-3xl">Anita Stollery</h3>
-                <p className="mt-0 text-base font-medium leading-snug text-[#FFFAF1]/85 md:text-lg">Founder</p>
-                <p className="mt-3 text-sm leading-relaxed text-[#FFFAF1]/90 md:text-base">
+                <h3 className="text-lg font-semibold leading-none text-[#FFFAF1] sm:text-2xl md:text-3xl">Anita Stollery</h3>
+                <p className="mt-0 text-sm font-medium leading-snug text-[#FFFAF1]/85 sm:text-base md:text-lg">Founder</p>
+                <p className="mt-2 text-xs leading-snug text-[#FFFAF1]/90 sm:mt-3 md:hidden">
+                  NHS and private Lead Practitioner, founder of our inclusive clinic at The Old Chapel in Bierton.
+                </p>
+                <p className="mt-2 hidden text-xs leading-snug text-[#FFFAF1]/90 sm:mt-3 sm:text-sm sm:leading-relaxed md:block md:text-base">
                   NHS and private-sector Lead Practitioner who founded our inclusive clinic at The Old Chapel in
                   Bierton, where expert holistic and clinical care come together.
                 </p>
@@ -225,12 +269,12 @@ export default function About() {
           </Reveal>
           <Reveal className={tileFact}>
           <article
-            className="flex h-full flex-col justify-between rounded-3xl bg-[#313C38] p-6 text-[#FFFAF1] md:p-7"
+            className="flex h-full flex-col justify-between rounded-3xl bg-[#313C38] p-4 text-[#FFFAF1] sm:p-6 md:p-7"
           >
-            <Clock className="h-14 w-14 shrink-0 text-[#FFFAF1]/45 md:h-16 md:w-16" strokeWidth={1.35} aria-hidden />
-            <div className="mt-5">
-              <h3 className="text-xl font-semibold leading-snug md:text-2xl">Opening Times</h3>
-              <div className="mt-2 space-y-0.5 text-base leading-relaxed text-[#FFFAF1]/92 md:text-lg">
+            <Clock className="h-8 w-8 shrink-0 text-[#FFFAF1]/45 sm:h-14 sm:w-14 md:h-16 md:w-16" strokeWidth={1.35} aria-hidden />
+            <div className="mt-4 sm:mt-5">
+              <h3 className="text-base font-semibold leading-snug sm:text-xl md:text-2xl">Opening Times</h3>
+              <div className="mt-1.5 space-y-0.5 text-sm leading-snug text-[#FFFAF1]/92 sm:mt-2 sm:text-base sm:leading-relaxed md:text-lg">
                 <p>Mon - Thurs: 09:00 - 19:00</p>
                 <p>Fri & Sat: 09:00 - 20:00</p>
                 <p>Sun: 10:00 - 17:00</p>
@@ -244,29 +288,29 @@ export default function About() {
           <Reveal className={photos.wellness.span}>
             <Photo src={photos.wellness.src} alt={photos.wellness.alt} portrait={photos.wellness.portrait} />
           </Reveal>
-          <Reveal className={`${tilePortrait} sm:col-span-2`}>
+          <Reveal className={`${tilePortrait} about-areas col-span-2`}>
           <article
             id="areas"
-            className="flex h-full flex-col justify-between rounded-3xl bg-[#313C38] p-6 text-[#FFFAF1] md:p-7"
+            className="flex h-full flex-col justify-between rounded-3xl bg-[#313C38] p-3.5 text-[#FFFAF1] sm:p-6 md:p-7"
           >
-            <MapPin className="h-14 w-14 shrink-0 text-[#FFFAF1]/45 md:h-16 md:w-16" strokeWidth={1.35} aria-hidden />
-            <div className="mt-5 flex flex-col gap-3">
+            <MapPin className="h-7 w-7 shrink-0 text-[#FFFAF1]/45 sm:h-14 sm:w-14 md:h-16 md:w-16" strokeWidth={1.35} aria-hidden />
+            <div className="mt-3 flex flex-col gap-2 sm:mt-5 sm:gap-3">
               <div>
-                <h3 className="text-xl font-semibold leading-snug md:text-2xl">A clinic for Aylesbury</h3>
-                <p className="mt-2 text-base leading-relaxed text-[#FFFAF1]/92 md:text-lg">
+                <h3 className="text-base font-semibold leading-snug sm:text-xl md:text-2xl">A clinic for Aylesbury</h3>
+                <p className="mt-1.5 text-xs leading-snug text-[#FFFAF1]/92 sm:mt-2 sm:text-base sm:leading-relaxed md:text-lg">
                   The Old Chapel in Bierton, for the surrounding villages too.
                 </p>
               </div>
-              <p className="text-base leading-relaxed text-[#FFFAF1]/92 md:text-lg">
+              <p className="text-xs leading-snug text-[#FFFAF1]/92 sm:text-base sm:leading-relaxed md:text-lg">
                 People travel to us from across Buckinghamshire for colonic hydrotherapy, massage, diabetic footcare,
                 ear wax removal, facials, counselling and nutrition support.
               </p>
-              <p className="text-sm leading-relaxed text-[#FFFAF1]/80 md:text-base">{site.areas.join(' · ')}</p>
+              <p className="text-[11px] leading-snug text-[#FFFAF1]/80 sm:text-sm sm:leading-relaxed md:text-base">{site.areas.join(' · ')}</p>
             </div>
           </article>
           </Reveal>
 
-          <Reveal className={photos.room.span}>
+          <Reveal className={`${photos.room.span} col-span-2 sm:col-span-1 lg:col-span-2`}>
             <Photo src={photos.room.src} alt={photos.room.alt} portrait={photos.room.portrait} />
           </Reveal>
         </div>

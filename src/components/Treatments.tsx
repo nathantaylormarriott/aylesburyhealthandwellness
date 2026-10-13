@@ -64,8 +64,8 @@ const images: Record<string, { src: string; alt: string; position?: string }> = 
 
 export default function Treatments() {
   return (
-    <section id="treatments" className="bg-[#313C38] pt-[120px] pb-[120px]">
-      <Container>
+    <section id="treatments" className="bg-[#313C38] pb-[120px]">
+      <Container className="pt-[120px]">
         <Reveal className="mb-20 max-w-3xl text-left">
           <header>
             <h2 className="mb-0 text-balance text-4xl font-semibold leading-none text-white sm:text-5xl md:text-6xl lg:text-[4rem]">
@@ -78,9 +78,14 @@ export default function Treatments() {
           </header>
         </Reveal>
 
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-3 lg:gap-10">
-          {site.services.map((treatment) => (
-            <Reveal key={treatment.slug} className="h-full min-h-0 [&>*]:h-full">
+        <div className="flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10">
+          {site.services.map((treatment, index) => (
+            <Reveal
+              key={treatment.slug}
+              delayMs={index * 110}
+              className="treatment-stack-item h-full min-h-0 [&>*]:h-full"
+              zIndex={index + 1}
+            >
               <TreatmentCard
                 id={treatment.slug}
                 title={treatment.title}
@@ -99,7 +104,11 @@ export default function Treatments() {
               />
             </Reveal>
           ))}
-          <Reveal className="h-full min-h-0 [&>*]:h-full">
+          <Reveal
+            delayMs={site.services.length * 110}
+            zIndex={site.services.length + 1}
+            className="treatment-stack-item h-full min-h-0 [&>*]:h-full"
+          >
             <TreatmentCard
               id="couples-wellness-packages"
               title="Couples Treatments & Wellness Packages"
@@ -115,6 +124,11 @@ export default function Treatments() {
               href={getTreatmentBookingUrl('couples-wellness-packages')}
             />
           </Reveal>
+          <div
+            id="treatments-stack-end"
+            className="pointer-events-none h-px w-full shrink-0 md:hidden"
+            aria-hidden
+          />
         </div>
       </Container>
     </section>

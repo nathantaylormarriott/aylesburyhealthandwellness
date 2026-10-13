@@ -3,6 +3,7 @@ import type Lenis from 'lenis';
 import { ArrowRight } from 'lucide-react';
 import { getLenisInstance } from '../lib/lenisScroll';
 import { submitNetlifyForm } from '../lib/netlifyForm';
+import { FRESHA_BOOK_URL } from './ShimmerBookNowLink';
 import Container from './Container';
 
 const HERO_PARALLAX_FACTOR = 0.22;
@@ -50,9 +51,11 @@ export default function Hero() {
   const [email, setEmail] = useState('');
   const [offerStatus, setOfferStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [offerMessage, setOfferMessage] = useState('');
+  const [compactOfferCopy, setCompactOfferCopy] = useState(false);
   const parallaxRef = useRef<HTMLDivElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
   const offerRef = useRef<HTMLFormElement>(null);
+  const heroBookNowRef = useRef<HTMLAnchorElement>(null);
   const offerBlurRef = useRef<HTMLDivElement>(null);
   const certsRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -62,6 +65,7 @@ export default function Hero() {
     const layer = parallaxRef.current;
     const copy = copyRef.current;
     const offer = offerRef.current;
+    const heroBookNow = heroBookNowRef.current;
     const offerBlur = offerBlurRef.current;
     const certs = certsRef.current;
     if (!hero) return;
@@ -78,8 +82,11 @@ export default function Hero() {
         const copyFade = fadeAmount(scrollProgress, 0, 0.92);
         applyScrollFade(copy, copyFade, HERO_FADE_MAX_BLUR_PX, reduceMotion);
       }
+      const offerFade = fadeAmount(scrollProgress, 0, 0.92);
+      if (heroBookNow) {
+        applyScrollFade(heroBookNow, offerFade, HERO_FADE_MAX_BLUR_PX, reduceMotion);
+      }
       if (offer) {
-        const offerFade = fadeAmount(scrollProgress, 0, 0.92);
         const remain = 1 - offerFade;
         offer.style.setProperty('--offer-fade', String(offerFade));
         offer.style.pointerEvents = remain < 0.12 ? 'none' : '';
@@ -117,6 +124,14 @@ export default function Hero() {
     window.addEventListener('scroll', updateOnScroll, { passive: true });
     updateOnScroll();
     return () => window.removeEventListener('scroll', updateOnScroll);
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const syncOfferCopy = () => setCompactOfferCopy(mq.matches);
+    syncOfferCopy();
+    mq.addEventListener('change', syncOfferCopy);
+    return () => mq.removeEventListener('change', syncOfferCopy);
   }, []);
 
   useEffect(() => {
@@ -168,23 +183,28 @@ export default function Hero() {
       <div className="relative z-10 flex min-h-0 flex-1 flex-col">
       <Container className="flex min-h-0 flex-1 items-center justify-start py-4 md:py-10">
         <div className="w-full max-w-3xl shrink-0 text-left">
-          <div ref={copyRef} className="will-change-[opacity,filter]">
-          <h1 className="mb-5 text-balance text-4xl font-semibold leading-tight text-white drop-shadow-lg sm:text-5xl md:mb-6 md:text-6xl lg:text-[4rem] lg:leading-[1.05]">
-            Expert care for your body, mind, and wellbeing.
+          <div className="hero-load-intro">
+          <div ref={copyRef} className="mx-auto max-w-xl text-center will-change-[opacity,filter] md:mx-0 md:max-w-none md:text-left">
+          <h1 className="mb-5 text-4xl font-semibold leading-tight text-white drop-shadow-lg sm:text-5xl md:mb-6 md:text-balance md:text-6xl lg:text-[4rem] lg:leading-[1.05]">
+            Expert care for your
+            <br className="md:hidden" />
+            {' '}
+            body, mind, and wellbeing.
           </h1>
 
-          <p className="mb-3 max-w-3xl text-pretty text-base leading-relaxed text-white/95 drop-shadow-md sm:text-lg md:mb-4 md:text-xl">
+          <p className="mx-auto mb-3 max-w-xl text-pretty text-base leading-relaxed text-white/95 drop-shadow-md sm:text-lg md:mx-0 md:mb-4 md:max-w-3xl md:text-xl">
             Our clinic is a safe, inclusive space where everyone is welcome.
           </p>
           </div>
 
+          <div className="flex w-full max-w-xl items-center gap-2 sm:gap-3">
           <form
             ref={offerRef}
             name="newsletter"
             method="POST"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            className="w-full max-w-xl"
+            className="min-w-0 flex-1"
             onSubmit={async (event: FormEvent<HTMLFormElement>) => {
               event.preventDefault();
               setOfferStatus('loading');
@@ -229,7 +249,7 @@ export default function Hero() {
             />
             <div className="hero-offer-pill relative rounded-full">
               <div ref={offerBlurRef} className="hero-offer-pill-blur" aria-hidden />
-              <div className="hero-offer-fade relative flex items-center gap-2 py-1.5 pl-5 pr-1.5">
+              <div className="hero-offer-fade relative flex items-center gap-1.5 py-1.5 pl-4 pr-1.5 sm:gap-2 sm:pl-5">
               <label htmlFor="hero-offer-email" className="sr-only">
                 Sign up to our newsletter for 10% off your first visit
               </label>
@@ -241,14 +261,18 @@ export default function Hero() {
                 autoComplete="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                placeholder="Sign up to our newsletter for 10% off your first visit"
+                placeholder={
+                  compactOfferCopy
+                    ? 'Sign up for 10% off'
+                    : 'Sign up to our newsletter for 10% off your first visit'
+                }
                 className="hero-offer-email min-w-0 flex-1 appearance-none bg-transparent text-xs font-medium text-white outline-none placeholder:font-medium placeholder:text-white/95 sm:text-sm"
               />
               <button
                 type="submit"
                 disabled={offerStatus === 'loading'}
                 aria-label="Sign up to our newsletter for 10% off your first visit"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FFFAF1] text-[#313C38] shadow-sm transition hover:bg-white disabled:opacity-60"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FFFAF1] text-[#313C38] shadow-sm transition hover:bg-white disabled:opacity-60 sm:h-10 sm:w-10"
               >
                 <ArrowRight size={18} strokeWidth={2} />
               </button>
@@ -260,14 +284,21 @@ export default function Hero() {
               </p>
             ) : null}
           </form>
+          <a
+            ref={heroBookNowRef}
+            href={FRESHA_BOOK_URL}
+            className="inline-flex h-12 shrink-0 items-center justify-center rounded-full bg-white px-4 text-sm font-medium text-[#313C38] will-change-[opacity,filter] sm:h-[3.25rem] sm:px-7 sm:text-base"
+          >
+            Book Now
+          </a>
+          </div>
+          </div>
         </div>
       </Container>
 
       <Container className="shrink-0 pb-4 pt-2">
-        <div
-          ref={certsRef}
-          className="mx-auto w-full max-w-xl sm:max-w-2xl md:max-w-3xl will-change-[opacity,filter]"
-        >
+        <div className="hero-load-certs mx-auto w-full max-w-xl sm:max-w-2xl md:max-w-3xl">
+          <div ref={certsRef} className="will-change-[opacity,filter]">
           <p className="text-center text-xs text-white/90 mb-2 font-medium drop-shadow-md">Certified by:</p>
           <div
             className="relative overflow-hidden"
@@ -294,6 +325,7 @@ export default function Hero() {
                 </div>
               ))}
             </div>
+          </div>
           </div>
         </div>
       </Container>

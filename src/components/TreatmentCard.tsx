@@ -73,7 +73,7 @@ export default function TreatmentCard({
         ) : null}
       </div>
 
-      <div className="relative z-[2] -mt-8 flex min-h-0 flex-1 flex-col px-4 pb-4 pt-0 sm:px-5 sm:pb-5">
+      <div className="relative z-[2] -mt-8 flex min-h-0 flex-1 flex-col overflow-y-auto px-4 pb-4 pt-0 sm:px-5 sm:pb-5 md:overflow-visible">
         <h3 className="text-xl font-semibold leading-tight text-[#313C38] sm:text-2xl">{title}</h3>
         {emphasis ? <p className="mt-1 text-sm font-medium text-[#6B7A5B]">{emphasis}</p> : null}
 

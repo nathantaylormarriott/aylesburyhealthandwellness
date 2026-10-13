@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Phone, Mail, MapPin, MessageCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import site from '../../seo/site.json';
 import { useHomeSectionNav } from '../hooks/useHomeSectionNav';
 import Container from './Container';
 import Reveal from './Reveal';
@@ -54,30 +55,30 @@ export default function Footer() {
           </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-12 lg:w-[min(100%,52rem)] lg:shrink-0 lg:gap-16">
+          <div className="grid w-full grid-cols-3 gap-4 sm:gap-12 lg:w-[min(100%,52rem)] lg:shrink-0 lg:gap-16">
           <Reveal>
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact</h4>
-            <div className="space-y-3">
-              <a href="tel:07379987766" className="flex items-center gap-2 text-[#FFFAF1] hover:text-[#83896D] transition">
-                <Phone size={18} />
+            <h4 className="mb-2 text-sm font-semibold md:mb-4 md:text-lg">Contact</h4>
+            <div className="space-y-2 md:space-y-3">
+              <a href="tel:07379987766" className="flex items-center gap-1.5 text-xs text-[#FFFAF1] transition hover:text-[#83896D] md:gap-2 md:text-base">
+                <Phone className="shrink-0 md:h-[18px] md:w-[18px]" size={16} />
                 <span>07379 987766</span>
               </a>
-              <a href="tel:01296926045" className="flex items-center gap-2 text-[#FFFAF1] hover:text-[#83896D] transition">
-                <Phone size={18} />
+              <a href="tel:01296926045" className="flex items-center gap-1.5 text-xs text-[#FFFAF1] transition hover:text-[#83896D] md:gap-2 md:text-base">
+                <Phone className="shrink-0 md:h-[18px] md:w-[18px]" size={16} />
                 <span>01296 926045</span>
               </a>
-              <a href="mailto:info@aylesburyhealthandwellness.co.uk" className="flex items-center gap-2 text-[#FFFAF1] hover:text-[#83896D] transition">
-                <Mail size={18} />
+              <a href="mailto:info@aylesburyhealthandwellness.co.uk" className="flex items-center gap-1.5 text-xs text-[#FFFAF1] transition hover:text-[#83896D] md:gap-2 md:text-base">
+                <Mail className="shrink-0 md:h-[18px] md:w-[18px]" size={16} />
                 <span>Email Us</span>
               </a>
-              <a href="https://api.whatsapp.com/send?phone=447379987766&text=Hello%20Aylesbury%20Health%20%26%20Wellness%2C%20%0A%0A" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#FFFAF1] hover:text-[#83896D] transition">
-                <MessageCircle size={18} />
+              <a href="https://api.whatsapp.com/send?phone=447379987766&text=Hello%20Aylesbury%20Health%20%26%20Wellness%2C%20%0A%0A" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-[#FFFAF1] transition hover:text-[#83896D] md:gap-2 md:text-base">
+                <MessageCircle className="shrink-0 md:h-[18px] md:w-[18px]" size={16} />
                 <span>WhatsApp</span>
               </a>
-              <div className="flex items-start gap-2 text-[#FFFAF1]">
-                <MapPin size={18} className="mt-1 flex-shrink-0" />
-                <span>The Old Chapel, Bierton, Aylesbury</span>
+              <div className="flex items-start gap-1.5 text-xs text-[#FFFAF1] md:gap-2 md:text-base">
+                <MapPin className="mt-0.5 shrink-0 md:mt-1 md:h-[18px] md:w-[18px]" size={16} />
+                <span>{site.address.postalCode}</span>
               </div>
             </div>
           </div>
@@ -85,36 +86,36 @@ export default function Footer() {
 
           <Reveal>
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <div className="space-y-2">
+            <h4 className="mb-2 text-sm font-semibold md:mb-4 md:text-lg">Quick Links</h4>
+            <div className="space-y-1.5 md:space-y-2">
               <button
                 type="button"
                 onClick={() => goToHomeSection('about')}
-                className="block text-left text-[#FFFAF1] hover:text-[#83896D] transition"
+                className="block text-left text-xs text-[#FFFAF1] transition hover:text-[#83896D] md:text-base"
               >
                 About Us
               </button>
               <button
                 type="button"
                 onClick={() => goToHomeSection('treatments')}
-                className="block text-left text-[#FFFAF1] hover:text-[#83896D] transition"
+                className="block text-left text-xs text-[#FFFAF1] transition hover:text-[#83896D] md:text-base"
               >
                 Treatments
               </button>
               <button
                 type="button"
                 onClick={() => goToHomeSection('testimonials')}
-                className="block text-left text-[#FFFAF1] hover:text-[#83896D] transition"
+                className="block text-left text-xs text-[#FFFAF1] transition hover:text-[#83896D] md:text-base"
               >
                 Testimonials
               </button>
-              <Link to="/faq" className="block text-[#FFFAF1] hover:text-[#83896D] transition">
+              <Link to="/faq" className="block text-xs text-[#FFFAF1] transition hover:text-[#83896D] md:text-base">
                 FAQ
               </Link>
               <button
                 type="button"
                 onClick={() => goToHomeSection('contact')}
-                className="block text-left text-[#FFFAF1] hover:text-[#83896D] transition"
+                className="block text-left text-xs text-[#FFFAF1] transition hover:text-[#83896D] md:text-base"
               >
                 Contact
               </button>
@@ -124,17 +125,17 @@ export default function Footer() {
 
           <Reveal>
           <div>
-            <h4 className="text-lg font-semibold mb-4">Website by:</h4>
+            <h4 className="mb-2 text-sm font-semibold md:mb-4 md:text-lg">Website by:</h4>
             <a
               href="https://www.taylor-marriott.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="block hover:opacity-80 transition-opacity"
+              className="block transition-opacity hover:opacity-80"
             >
               <img
                 src="/taylor-marriott-logo.png"
                 alt="Taylor-Marriott"
-                className="block h-12 md:h-14 w-auto"
+                className="block h-9 w-auto md:h-14"
               />
             </a>
             <a
@@ -143,7 +144,7 @@ export default function Footer() {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="footer-cta mt-4 inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-white/20"
+              className="footer-cta mt-2 inline-flex max-w-full items-center justify-center gap-1.5 rounded-full border border-white/35 bg-white/10 px-2.5 py-1.5 text-[10px] font-semibold leading-tight text-white transition-colors hover:bg-white/20 md:mt-4 md:gap-2 md:px-4 md:py-2 md:text-xs"
             >
               Let&apos;s build yours
               <ArrowRight className="relative z-[1] h-3.5 w-3.5 animate-arrow-nudge" />
@@ -153,7 +154,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="footer-wordmark-slot" aria-hidden>
+        <div className="footer-wordmark-slot hidden md:block" aria-hidden>
           <FooterWordmarkLine text="AYLESBURY HEALTH & WELLNESS" />
         </div>
       </Container>
