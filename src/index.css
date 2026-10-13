@@ -1,0 +1,401 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    letter-spacing: -0.02em;
+    background-color: #313c38;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.04em;
+  }
+}
+
+@layer components {
+  .hero-offer-pill-blur {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 250, 241, 0.5);
+    background-color: rgba(255, 250, 241, 0.22);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+    backdrop-filter: blur(28px) saturate(1.5);
+    pointer-events: none;
+    transform: translateZ(0);
+  }
+
+  .hero-offer-fade {
+    opacity: calc(1 - var(--offer-fade, 0));
+  }
+
+  .hero-offer-email {
+    background-color: transparent;
+    box-shadow: none;
+    -webkit-text-fill-color: #fff;
+    caret-color: #fff;
+  }
+
+  .hero-offer-email:-webkit-autofill,
+  .hero-offer-email:-webkit-autofill:hover,
+  .hero-offer-email:-webkit-autofill:focus,
+  .hero-offer-email:-webkit-autofill:active {
+    -webkit-text-fill-color: #fff;
+    caret-color: #fff;
+    -webkit-box-shadow: 0 0 0 1000px transparent inset;
+    box-shadow: 0 0 0 1000px transparent inset;
+    transition: background-color 99999s ease-out;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  .hero-offer-email:autofill {
+    -webkit-text-fill-color: #fff;
+    box-shadow: 0 0 0 1000px transparent inset;
+    background-color: transparent !important;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  @keyframes draw-border {
+    0% {
+      stroke-dashoffset: 400;
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 0.5;
+    }
+  }
+
+  .animate-draw-border {
+    animation: draw-border 6s ease-in-out infinite;
+    filter: blur(1.5px) drop-shadow(0 0 6px rgba(234, 88, 12, 1)) drop-shadow(0 0 12px rgba(234, 88, 12, 0.8)) drop-shadow(0 0 20px rgba(234, 88, 12, 0.6)) drop-shadow(0 0 30px rgba(234, 88, 12, 0.4));
+  }
+
+  @keyframes hero-draw-border {
+    0% {
+      stroke-dashoffset: 600;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .animate-hero-border {
+    animation: hero-draw-border 6s linear infinite;
+    filter: drop-shadow(0 0 6px rgba(234, 88, 12, 0.6)) drop-shadow(0 0 12px rgba(234, 88, 12, 0.4)) drop-shadow(0 0 18px rgba(234, 88, 12, 0.2));
+  }
+}
+
+/* Progressive blur top — AV Associates / Forest Sanctuary */
+.gradient-blur {
+  position: fixed;
+  z-index: 49;
+  inset: 0 0 auto 0;
+  height: 12%;
+  pointer-events: none;
+}
+
+/* Blur band matches the nav bar — not a taller strip above the links */
+.site-nav-blur {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  height: 100%;
+}
+
+.gradient-blur > div,
+.gradient-blur::before,
+.gradient-blur::after {
+  position: absolute;
+  inset: 0;
+}
+
+.gradient-blur::before {
+  content: "";
+  z-index: 1;
+  -webkit-backdrop-filter: blur(0.5px);
+  backdrop-filter: blur(0.5px);
+  -webkit-mask: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%);
+}
+
+.gradient-blur > div:nth-of-type(1) {
+  z-index: 2;
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  -webkit-mask: linear-gradient(to top, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%);
+}
+
+.gradient-blur > div:nth-of-type(2) {
+  z-index: 3;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  -webkit-mask: linear-gradient(to top, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%);
+}
+
+.gradient-blur > div:nth-of-type(3) {
+  z-index: 4;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  -webkit-mask: linear-gradient(to top, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%);
+}
+
+.gradient-blur > div:nth-of-type(4) {
+  z-index: 5;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  -webkit-mask: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%);
+}
+
+.gradient-blur > div:nth-of-type(5) {
+  z-index: 6;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  -webkit-mask: linear-gradient(to top, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%);
+}
+
+.gradient-blur > div:nth-of-type(6) {
+  z-index: 7;
+  -webkit-backdrop-filter: blur(32px);
+  backdrop-filter: blur(32px);
+  -webkit-mask: linear-gradient(to top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 1) 100%);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 1) 100%);
+}
+
+.gradient-blur::after {
+  content: "";
+  z-index: 8;
+  -webkit-backdrop-filter: blur(64px);
+  backdrop-filter: blur(64px);
+  -webkit-mask: linear-gradient(to top, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%);
+}
+
+.nav-blur-tint {
+  z-index: 9;
+  transition: opacity 300ms ease;
+}
+
+.nav-blur-tint-dark {
+  background-color: rgba(20, 24, 22, 0.28);
+  -webkit-mask: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.72) 18%,
+    rgba(0, 0, 0, 0.38) 42%,
+    rgba(0, 0, 0, 0.14) 68%,
+    transparent 100%
+  );
+  mask: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.72) 18%,
+    rgba(0, 0, 0, 0.38) 42%,
+    rgba(0, 0, 0, 0.14) 68%,
+    transparent 100%
+  );
+}
+
+.site-curtain {
+  box-shadow: 0 28px 56px -20px rgba(49, 60, 56, 0.22);
+}
+
+.site-footer-reveal {
+  position: sticky;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 100% 50% at 50% 0%, rgba(255, 250, 241, 0.08) 0%, transparent 62%),
+    #313c38;
+}
+
+.footer-wordmark-slot {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  margin-top: 6rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.footer-wordmark-line {
+  margin: 0;
+  width: max-content;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0;
+  white-space: nowrap;
+  color: rgba(255, 250, 241, 0.4);
+}
+
+.footer-cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  animation: footer-cta-breathe 2.6s ease-in-out infinite;
+}
+
+.footer-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 32%,
+    rgba(255, 250, 241, 0.55) 50%,
+    transparent 68%
+  );
+  transform: translateX(-130%);
+  animation: footer-cta-shimmer 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes footer-cta-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes footer-cta-shimmer {
+  0%,
+  18% {
+    transform: translateX(-130%);
+  }
+  55%,
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+.marquee-viewport {
+  overflow-x: clip;
+  overflow-y: visible;
+  padding-block: 1.25rem;
+}
+
+@supports not (overflow: clip) {
+  .marquee-viewport {
+    overflow-x: hidden;
+  }
+}
+
+.marquee-track {
+  will-change: transform;
+}
+
+.marquee-slot {
+  display: flex;
+  align-self: stretch;
+}
+
+.testimonial-note,
+.tiktok-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.marquee-viewport .testimonial-note:hover,
+.marquee-viewport .tiktok-card:hover {
+  transform: translate3d(0, -0.4rem, 0);
+  box-shadow: 0 14px 28px -12px rgba(49, 60, 56, 0.28);
+}
+
+@keyframes arrow-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-arrow-nudge {
+  animation: arrow-nudge 1.25s ease-in-out infinite;
+}
+
+.reveal {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(22px);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-in {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .animate-arrow-nudge,
+  .footer-cta,
+  .footer-cta::after {
+    transform: none;
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}
+
+.nav-blur-tint-light {
+  background-color: rgba(255, 250, 241, 0.5);
+  -webkit-mask: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.8) 22%,
+    rgba(0, 0, 0, 0.45) 50%,
+    rgba(0, 0, 0, 0.16) 76%,
+    transparent 100%
+  );
+  mask: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.8) 22%,
+    rgba(0, 0, 0, 0.45) 50%,
+    rgba(0, 0, 0, 0.16) 76%,
+    transparent 100%
+  );
+}

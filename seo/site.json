@@ -1,0 +1,176 @@
+{
+  "name": "Aylesbury Health and Wellness",
+  "legalName": "Aylesbury Health and Wellness Limited",
+  "url": "https://aylesburyhealthandwellness.co.uk/",
+  "description": "Health and wellness clinic in Bierton, Aylesbury. Colonic hydrotherapy, massage, diabetic footcare, ear microsuction, facials, counselling, nutrition and digestive health at The Old Chapel, HP22.",
+  "email": "info@aylesburyhealthandwellness.co.uk",
+  "phones": ["+447379987766", "+441296926045"],
+  "phoneDisplay": ["07379 987766", "01296 926045"],
+  "bookingUrl": "https://www.fresha.com/book-now/aylesbury-health-and-wellness-limited-y3lpx75w/services?lid=2792378&share=true&pId=2700687",
+  "address": {
+    "street": "The Old Chapel, 185b Aylesbury Rd",
+    "locality": "Bierton",
+    "region": "Buckinghamshire",
+    "postalCode": "HP22 5DW",
+    "country": "GB"
+  },
+  "geo": { "lat": 51.8332222, "lng": -0.7816111 },
+  "areas": [
+    "Aylesbury",
+    "Bierton",
+    "Stoke Mandeville",
+    "Wendover",
+    "Aston Clinton",
+    "Wing",
+    "Stone",
+    "Buckingham",
+    "Leighton Buzzard",
+    "Tring"
+  ],
+  "hours": [
+    { "days": ["Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "19:00" },
+    { "days": ["Friday", "Saturday"], "opens": "09:00", "closes": "20:00" },
+    { "days": ["Sunday"], "opens": "10:00", "closes": "17:00" }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/aylesburyhealthandwellness/",
+    "https://www.tiktok.com/@ayleshealthandwellness"
+  ],
+  "services": [
+    {
+      "slug": "colonic-hydrotherapy",
+      "title": "Colonic Hydrotherapy",
+      "priceFrom": "From £90",
+      "description": "A gentle, restorative treatment that supports digestive health, reduces bloating, and helps rebalance the body from within. Available at our clinic in Bierton, near Aylesbury.",
+      "items": [
+        "Colonic Hydrotherapy Session",
+        "Course of Six Treatments",
+        "Colonic Hydrotherapy + Swedish Massage",
+        "Extended Abdominal & Colon Massage + Colonic",
+        "Coffee, Herbal, or Probiotic Enema Add-Ons"
+      ]
+    },
+    {
+      "slug": "massage-therapy",
+      "title": "Massage Therapy",
+      "priceFrom": "From £40",
+      "description": "Professional massage in Aylesbury to ease tension, boost circulation, and support relaxation and recovery.",
+      "items": [
+        "Swedish Massage",
+        "Deep Tissue Massage",
+        "Lymphatic Massage",
+        "Pregnancy Massage",
+        "Aromatherapy or Hot Stone & Warm Bamboo Massage"
+      ]
+    },
+    {
+      "slug": "digestive-health",
+      "title": "Digestive Health",
+      "priceFrom": "From £40",
+      "description": "Therapies in Bierton to support gut function, ease constipation and excess gas, and help identify food sensitivities.",
+      "items": [
+        "Food Intolerance Testing",
+        "Abdominal & Colon Massage",
+        "Digestive Health Consultation",
+        "Nutritional Guidance",
+        "Gut Support Follow-Up"
+      ]
+    },
+    {
+      "slug": "professional-footcare",
+      "title": "Professional Footcare",
+      "priceFrom": "From £45",
+      "emphasis": "Specialising in diabetic footcare",
+      "description": "Clinical foot treatments by a qualified Foot Health Practitioner in Aylesbury — medical footcare, not a pedicure. Specialising in diabetic footcare.",
+      "items": [
+        "Nail Cutting and Callus Removal",
+        "Corn and Verruca Treatment",
+        "Fungal Nail Management",
+        "Therapeutic Foot Massage (for arthritis and plantar fasciitis)",
+        "Elim Professional Callus Removal"
+      ]
+    },
+    {
+      "slug": "ear-care",
+      "title": "Ear Care",
+      "priceFrom": "From £20",
+      "description": "Ear wax removal in Aylesbury using microsuction or irrigation, for clearer hearing and comfort.",
+      "items": [
+        "Ear Consultation",
+        "Ear Microsuction (Bilateral)",
+        "Ear Irrigation (Bilateral)",
+        "Wax Removal Follow-Up",
+        "Preventive Ear Health Advice"
+      ]
+    },
+    {
+      "slug": "facial-treatments",
+      "title": "Facial Treatments",
+      "priceFrom": "From £65",
+      "description": "Therapeutic facials in Bierton combining clinical care with relaxation, including oncology facials.",
+      "items": [
+        "Rejuvenating Facial",
+        "Collagen Anti-Ageing Facial",
+        "Natural Lift Facial",
+        "Oncology Facial",
+        "Microdermabrasion or Korean Glass Skin Facial"
+      ]
+    },
+    {
+      "slug": "counselling",
+      "title": "Counselling Sessions",
+      "priceFrom": "From £65",
+      "description": "Confidential counselling in Aylesbury for anxiety, relationships, trauma, bereavement and life transitions.",
+      "items": [
+        "Individual Counselling Sessions",
+        "Relationship and Couples Counselling",
+        "Anxiety and Depression Support",
+        "Trauma and PTSD Therapy",
+        "Bereavement and Life Transition Support"
+      ]
+    },
+    {
+      "slug": "health-coaching-nutrition",
+      "title": "Health Coaching & Nutrition",
+      "priceFrom": "From £50",
+      "description": "Nutrition and lifestyle coaching in Aylesbury to build lasting habits for physical and emotional wellbeing.",
+      "items": [
+        "Initial Consultation",
+        "Nutrition and Lifestyle Coaching",
+        "Personalised Wellness Plans",
+        "Progress Reviews",
+        "Ongoing Health Support"
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Where is Aylesbury Health and Wellness?",
+      "a": "We are at The Old Chapel, 185b Aylesbury Road, Bierton, Aylesbury, Buckinghamshire, HP22 5DW. Free parking is available on site. The clinic is a short drive from Aylesbury town centre."
+    },
+    {
+      "q": "Which areas do you serve?",
+      "a": "The clinic is in Bierton and welcomes patients from Aylesbury, Stoke Mandeville, Wendover, Aston Clinton, Wing, Stone, Buckingham, Leighton Buzzard, Tring and the surrounding Buckinghamshire villages."
+    },
+    {
+      "q": "Do you offer colonic hydrotherapy in Aylesbury?",
+      "a": "Yes. Colonic hydrotherapy is available at our Bierton clinic, including single sessions, courses of six, and combinations with massage. Appointments start from £90. Book online via Fresha."
+    },
+    {
+      "q": "Do you provide diabetic footcare near Aylesbury?",
+      "a": "Yes. Professional footcare is carried out by a qualified Foot Health Practitioner and specialises in diabetic footcare, including nail cutting, callus, corns, verrucas and fungal nails. This is clinical footcare, not a cosmetic pedicure. Prices start from £45."
+    },
+    {
+      "q": "Can I get ear microsuction in Aylesbury?",
+      "a": "Yes. We offer ear consultations, bilateral microsuction and irrigation for wax removal at The Old Chapel in Bierton. Ear care starts from £20."
+    },
+    {
+      "q": "What are your opening hours?",
+      "a": "Monday to Thursday 09:00–19:00, Friday and Saturday 09:00–20:00, Sunday 10:00–17:00."
+    },
+    {
+      "q": "How do I book an appointment?",
+      "a": "Book online through Fresha, call 07379 987766 or 01296 926045, email info@aylesburyhealthandwellness.co.uk, or message us on WhatsApp."
+    }
+  ]
+}

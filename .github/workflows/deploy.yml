@@ -1,0 +1,44 @@
+name: Deploy to Krystal (cPanel)
+
+on:
+  push:
+    branches: [ "main" ]   # change if your default branch is different
+  workflow_dispatch:
+
+# Prevent overlapping deploys on fast pushes
+concurrency:
+  group: krystal-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.REPO_NAME }}
+          fetch-depth: 1
+
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build Vite app
+        run: npm run build
+
+      - name: Deploy to Krystal via rsync
+        uses: easingthemes/ssh-deploy@v4.1.8
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}    # ✅ Your private key (add in GitHub Secrets)
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}           # ✅ e.g. yourdomain.com or server hostname
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}           # ✅ your cPanel username
+          REMOTE_PORT: 722                                  # ✅ Krystal SSH port
+          SOURCE: ./dist/                                       # what to upload
+          TARGET: ${{ secrets.REMOTE_TARGET }}             # ✅ e.g. public_html or public_html/app
+          ARGS: -rlgoDzvc -i --delete                      # -i=items; --delete removes old files not in repo
