@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { addNewsletterSubscriber } from './netlify/functions/_shared/subscribe';
 import { getTikTokVideos } from './netlify/functions/_shared/tiktokFeed';
 import { isAllowedTikTokVideoUrl, proxyTikTokVideo } from './netlify/functions/_shared/tiktokMedia';
+import { bakeTikTokFeedPlugin } from './seo/bakeTikTokFeed';
 import { seoPlugin } from './seo/renderSeo';
 
 function newsletterDevPlugin(): Plugin {
@@ -141,7 +142,7 @@ function newsletterDevPlugin(): Plugin {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), seoPlugin(), newsletterDevPlugin()],
+  plugins: [react(), seoPlugin(), newsletterDevPlugin(), bakeTikTokFeedPlugin()],
   server: {
     host: true,
     strictPort: true,

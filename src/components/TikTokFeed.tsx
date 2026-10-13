@@ -110,14 +110,24 @@ export default function TikTokFeed() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch('/api/tiktok-videos')
-      .then((response) => {
-        if (!response.ok) throw new Error('feed');
-        return response.json() as Promise<FeedResponse>;
-      })
-      .then((data) => {
+    const loadFeed = async (): Promise<TikTokVideo[]> => {
+      for (const url of ['/tiktok/feed.json', '/api/tiktok-videos']) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) continue;
+          const data = (await response.json()) as FeedResponse;
+          const next = (data.videos ?? []).slice(0, 12);
+          if (next.length > 0) return next;
+        } catch {
+          // try the next source
+        }
+      }
+      return [];
+    };
+
+    loadFeed()
+      .then((next) => {
         if (cancelled) return;
-        const next = (data.videos ?? []).slice(0, 12);
         setVideos(next);
         setStatus(next.length > 0 ? 'ready' : 'empty');
       })
